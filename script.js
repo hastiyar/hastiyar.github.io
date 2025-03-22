@@ -24,20 +24,26 @@ document.querySelectorAll('.faq-question').forEach(question => {
     });
 });
 
-function openBaleLink(url) {
-    console.log("Trying to open link:", url);
+function openBaleLink(link) {
     if (window.Bale && window.Bale.WebApp) {
-        console.log("Opening link in Bale app");
-        window.Bale.WebApp.openLink(url, { try_instant_view: true });
-    } else {
-        console.log("Bale app not available, redirecting to URL");
-        window.location.href = url;
-    }
+        window.Bale.WebApp.openLink(`https://ble.ir/${link}`, { try_instant_view: true });
 
-    setTimeout(function() {
-        if (window.Bale && window.Bale.WebApp) {
-            console.log("Closing Bale app");
+        setTimeout(function() {
             window.Bale.WebApp.close();
-        }
-    }, 1000); 
+        }, 1000);
+    } else {
+        window.location.href = `https://ble.ir/${link}`;
+    }
+}
+
+function openLink(link) {
+    if (window.Bale && window.Bale.WebApp) {
+        window.Bale.WebApp.openLink(`${link}`, { try_instant_view: true });
+
+        setTimeout(function() {
+            window.Bale.WebApp.close();
+        }, 1000);
+    } else {
+        window.location.href = link;
+    }
 }
