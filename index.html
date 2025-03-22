@@ -5,7 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سوالات متداول</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script> <!-- اضافه کردن defer برای بارگذاری غیرهمزمان -->
+    <script>
+        function openBaleLink(url) {
+            if (window.Bale && window.Bale.WebApp) {
+                window.Bale.WebApp.openLink(url, { try_instant_view: true });
+            } else {
+                window.location.href = url;
+            }
+
+            setTimeout(function() {
+                if (window.Bale && window.Bale.WebApp) {
+                    window.Bale.WebApp.close();
+                }
+            }, 1000); 
+        }
+
+        window.onload = function() {
+            // Call the function if needed on load
+        };
+    </script>
 </head>
 <body>
     <div class="container">
@@ -160,5 +178,6 @@
             </div>
         </div>          
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
