@@ -25,19 +25,19 @@ document.querySelectorAll('.faq-question').forEach(question => {
 });
 
 function openBaleLink(url) {
+    console.log("Trying to open link:", url);
     if (window.Bale && window.Bale.WebApp) {
+        console.log("Opening link in Bale app");
         window.Bale.WebApp.openLink(url, { try_instant_view: true });
     } else {
+        console.log("Bale app not available, redirecting to URL");
         window.location.href = url;
     }
 
     setTimeout(function() {
         if (window.Bale && window.Bale.WebApp) {
+            console.log("Closing Bale app");
             window.Bale.WebApp.close();
         }
     }, 1000); 
 }
-
-window.onload = function() {
-    // Call the function if needed on load
-};
