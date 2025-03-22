@@ -23,3 +23,21 @@ document.querySelectorAll('.faq-question').forEach(question => {
         }, 1000);
     });
 });
+
+function openBaleLink(url) {
+    if (window.Bale && window.Bale.WebApp) {
+        window.Bale.WebApp.openLink(url, { try_instant_view: true });
+    } else {
+        window.location.href = url;
+    }
+
+    setTimeout(function() {
+        if (window.Bale && window.Bale.WebApp) {
+            window.Bale.WebApp.close();
+        }
+    }, 1000); 
+}
+
+window.onload = function() {
+    // Call the function if needed on load
+};
